@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Col, Container, Row, Table} from "react-bootstrap";
+import {Container, Table} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DeleteButton from "./components/DeleteButton";
+import AddButton from "./components/AddButton";
 
-interface IStudent {
-    id: number
+export interface IStudent {
+    id?: number
     fio: string
     birthDate: Date
     inn: number
@@ -13,22 +15,26 @@ interface IStudent {
 function App() {
     const [all, setAll] = useState<IStudent[]>([]);
 
-    // Similar to componentDidMount and componentDidUpdate:
-    useEffect(() => {
+    const fetchAll = async () => {
             const url = process.env.REACT_APP_API + "/student-resource/get-all"
-            const fetchAll = async () => {
-                    try {
-                        const response = await fetch(url);
-                        const json = await response.json();
-                        setAll(json)
-                        console.log(json);
-                    } catch
-                        (error) {
-                        console.log("error", error);
-                    }
-                }
-            ;
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                });
+                const json = await response.json();
+                setAll(json)
+                console.log(json);
+            } catch
+                (error) {
+                console.log("error", error);
+            }
+        }
+    ;
 
+    useEffect(() => {
             fetchAll();
         }, []
     );
@@ -51,15 +57,17 @@ function App() {
                     <tr onDoubleClick={() => console.log("clicked")} key={student.id}>
                         <td>{student.id}</td>
                         <td>{student.fio}</td>
-                        <td>{student.birthDate}</td>
+                        <td>{new Date(student.birthDate).toLocaleDateString()}</td>
                         <td>{student.inn}</td>
                         <td>{student.email}</td>
-                        <td><Button variant="danger">Удалить</Button></td>
+                        <td><DeleteButton student={student} deleteHandler={
+                            () => fetchAll()
+                        }/></td>
                     </tr>
                 )}
                 </tbody>
             </Table>
-            <Button>Добавить</Button>
+            <AddButton addHandler={() => fetchAll()}/>
         </Container>
     );
 }

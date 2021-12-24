@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# Лабораторная работа 7
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Задание
 
-## Available Scripts
+Сделать форму ввода данных, с которой будет отправляться http rest 
+запрос на сервер(вызов одного из реализованных ранее методов на вставку).
 
-In the project directory, you can run:
+## Разработка
 
-### `npm start`
+### Структура проекта
+```
+├── node_modules
+│   └── ...
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+├── src
+│   ├── App.tsx
+│   ├── components
+│   │   ├── AddButton.tsx
+│   │   └── DeleteButton.tsx
+│   ├── index.tsx
+│   └── reportWebVitals.ts
+└── tsconfig.json
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Результат разработки
 
-### `npm test`
+В результате разработки был разработан интерфейс для просмотра всех студентов, добавление нового и удаление.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Программа использует api /student-resource разработанное в ходе 6 лабораторной работы.
 
-### `npm run build`
+Основной интерфейс
+<img src="main.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Добавление нового студента
+<img src="add.png" alt="error">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Добавление нового студента
+<img src="addFilled.png" alt="error">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Датапикер импортированный из react-datepicker 
+<img src="datePicker.png" alt="error">
 
-### `npm run eject`
+## Запуск
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Запуск происходит с помощью стандартной команды 
+``
+npm start
+``
+на порте 3000. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+В файле [`.env`](/.env) прописывается REACT_APP_API (host api).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Работа выполнена
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[Ащеулов Михаил ПИМ-21](https://github.com/VergiliusAW)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Кравцов Тимофей ПИМ-21](https://vk.com/timofeykrav)
